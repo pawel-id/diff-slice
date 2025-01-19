@@ -1,0 +1,19 @@
+{
+  "name": "diff-slice",
+  "version": "1.0.0",
+  "description": "Slice diff files",
+  "license": "ISC",
+  "author": "Paweł Idczak <pawel.idczak@gmail.com>",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "git",
+    "diff",
+    "slice"
+  ],
+  "dependencies": {
+    "@types/node": "^22.10.7"
+  }
+}

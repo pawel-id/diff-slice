@@ -1,0 +1,57 @@
+diff --git a/zoo/dog.txt b/zoo/dog.txt
+index 6417abc..049d59f 100644
+--- a/zoo/dog.txt
++++ b/zoo/dog.txt
+@@ -1,4 +1,3 @@
+-A dog is a cherished and friendly companion, valued for its loyalty and
+-protective nature. Dogs are often referred to as "man's best friend" due to
+-their strong bond with humans. They are highly trainable and come in a variety
+-of breeds, each with distinct traits and remarkable abilities.
++Dogs are loyal and protective companions, often called "man's best friend" for
++their unique bond with humans. They are highly trainable and come in various
++breeds, each with distinct traits and exceptional abilities that enrich lives.
+@@ -11,4 +10,8 @@ unwavering dedication of dogs to their tasks is truly inspiring.
+-Beyond their utility, dogs bring immense joy and comfort to their owners. Their
+-playful antics, wagging tails, and unconditional love brighten even the darkest
+-days. A dog's companionship is a source of emotional support, fostering a sense
+-of well-being and happiness in their human counterparts.
++Beyond their roles, dogs bring joy and comfort to their owners. Their playful
++antics, wagging tails, and boundless affection brighten even the darkest days.
++A dog's companionship fosters emotional support and happiness in their humans.
++
++Dogs also play a vital role in promoting physical activity and outdoor
++exploration. Whether it's a brisk walk in the park or an adventurous hike,
++dogs encourage their owners to stay active and enjoy nature, fostering a
++healthier lifestyle.
+diff --git a/zoo/cat.txt b/zoo/kitty.txt
+similarity index 100%
+rename from zoo/cat.txt
+rename to zoo/kitty.txt
+diff --git a/zoo/parrot.txt b/zoo/parrot.txt
+deleted file mode 100644
+index 3d7881c..0000000
+--- a/zoo/parrot.txt
++++ /dev/null
+@@ -1,4 +0,0 @@
+-A parrot is a colorful, talking bird known for its intelligence and mimicry
+-skills. Parrots are social creatures that thrive in interactive environments.
+-They have strong beaks and zygodactyl feet, which help them climb and grasp
+-objects with ease.
+diff --git a/zoo/rabbit.txt b/zoo/rabbit.txt
+index 6584cb3..3a6daa2 100644
+--- a/zoo/rabbit.txt
++++ b/zoo/rabbit.txt
+@@ -2,3 +2 @@ A rabbit is a gentle, hopping animal known for its long ears and love for
+-vegetables. Rabbits are social animals that enjoy living in groups. They are
+-known for their quick movements and ability to dig burrows for shelter and
+-protection.
++vegetables. Rabbits are social animals that enjoy living in groups.
+diff --git a/zoo/turtle.txt b/zoo/turtle.txt
+new file mode 100644
+index 0000000..32f6cfd
+--- /dev/null
++++ b/zoo/turtle.txt
+@@ -0,0 +1,3 @@
++A turtle is a slow-moving reptile known for its hard shell that provides
++protection from predators. Turtles are found in various habitats, including
++oceans, rivers, and forests, and are admired for their longevity and resilience.
