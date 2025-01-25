@@ -12,3 +12,6 @@ notable npm packages:
 
 - https://www.npmjs.com/package/diff
 - https://www.npmjs.com/package/unidiff
+
+In order to prepare diff to be split generate it without unnecessary context
+lines: `git diff --unified=0` (this implies --patch in terms of git diff)
