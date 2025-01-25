@@ -1,5 +1,5 @@
 import fs from 'node:fs'
-import { parse, split, unparse } from './diff.js'
+import { parse, split, unparse } from 'diff-slice'
 
 const content = fs.readFileSync(process.argv[2], 'utf8')
 const changes = parse(content)
