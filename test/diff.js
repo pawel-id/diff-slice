@@ -1,6 +1,6 @@
 import { deepEqual } from 'node:assert'
 import { readFileSync } from 'node:fs'
-import { parse, unparse } from '../src/diff.js'
+import { parse, unparse } from 'diff-slice'
 import { describe, it } from 'node:test'
 
 describe('diff operations', () => {
