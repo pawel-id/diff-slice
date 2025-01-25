@@ -117,7 +117,7 @@ export function split(changes, options = {}) {
       }
     }
 
-    // Matching hunks while keeping the original change structure if necessary
+    // Matching hunks
     if (matchHunks.length > 0) {
       match.push({
         header: change.header, // keep the original header
@@ -125,7 +125,7 @@ export function split(changes, options = {}) {
       })
     }
 
-    // Keep the modified change if it has any hunks left to keep
+    // Rest of hunks
     if (restHunks.length > 0) {
       rest.push({
         header: change.header, // keep the original header
