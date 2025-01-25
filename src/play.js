@@ -5,10 +5,12 @@ const content = fs.readFileSync(process.argv[2], 'utf8')
 const changes = parse(content)
 console.log(JSON.stringify(changes, null, 2))
 
-function processHunk(hunk) {
-  return hunk.lines.some((line) => line.includes('PricebookEntry'))
+const pricebookEntries = {
+  isMatchHunk: function (hunk) {
+    return hunk.lines.some((line) => line.includes('PricebookEntry'))
+  },
 }
 
-const { keep, separate } = split(changes, { processHunk })
-fs.writeFileSync('samples/keep.diff', unparse(keep))
-fs.writeFileSync('samples/separate.diff', unparse(separate))
+const { match, rest } = split(changes, pricebookEntries)
+fs.writeFileSync('samples/match.diff', unparse(match))
+fs.writeFileSync('samples/rest.diff', unparse(rest))

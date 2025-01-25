@@ -69,72 +69,70 @@ export function unparse(changes) {
 }
 
 /**
- * Splits a list of changes into "to keep" and "to separate" arrays
- * based on specific conditions.
+ * Splits a list of changes into "match" and "rest" arrays based on specific
+ *  conditions.
  *
  * @param {Object[]} changes - An array of changes, where each change
  * includes a header and hunk(s).
  * @param {Object} options - An object containing optional processing functions:
- * @param {function} options.processChange - A function to process the entire
- *     change, returning a boolean. If true, the change is moved into the
- *     separate list.
- * @param {function} options.processHunk - A function to process individual
- *     hunks, returning a boolean. If true, the hunk is moved to the separate
+ * @param {function} options.isMatchChange - A function to process the entire
+ *     change, returning a boolean. If true, the change is kept in matching
+ *     list.
+ * @param {function} options.isMatchHunk - A function to process individual
+ *     hunks, returning a boolean. If true, the hunk is moved to matching
  *     list of changes.
  * @returns {{ keep: Object[], separate: Object[] }} - An object containing
  * two arrays:
- * - `keep`: Changes to keep
- * - `separate`: Changes to split out
+ * - `match`: matching changes
+ * - `rest`: rest of changes
  */
 export function split(changes, options = {}) {
-  const { processChange, processHunk } = options
+  const { isMatchChange, isMatchHunk } = options
 
-  const keep = [] // Changes to keep
-  const separate = [] // Changes to separate
+  const match = [] // matching changes
+  const rest = [] // rest of changes
 
   for (const change of changes) {
-    // Check if the entire change should be split
-    if (processChange && processChange(change)) {
-      separate.push(change)
+    // Check if the entire change match criteria
+    if (isMatchChange && isMatchChange(change)) {
+      match.push(change)
       continue
     }
 
-    // If there's no hunks to process keep it entirely
-    if (!change.hunks || !processHunk) {
-      keep.push(change)
+    // If there's no hunks to process move it to rest entirely
+    if (!change.hunks || !isMatchHunk) {
+      rest.push(change)
       continue
     }
 
     // Process hunks within the current change
-    const keepHunks = []
-    const separateHunks = []
+    const restHunks = []
+    const matchHunks = []
 
     for (const hunk of change.hunks) {
-      if (processHunk(hunk)) {
-        // Move the hunk to the separate list
-        separateHunks.push(hunk)
+      if (isMatchHunk(hunk)) {
+        matchHunks.push(hunk)
       } else {
-        // Keep the hunk in the same change
-        keepHunks.push(hunk)
+        restHunks.push(hunk)
       }
     }
 
-    // Keep the modified change if it has any hunks left to keep
-    if (keepHunks.length > 0) {
-      keep.push({
-        header: change.header, // Keep the original header
-        hunks: keepHunks,
+    // Matching hunks while keeping the original change structure if necessary
+    if (matchHunks.length > 0) {
+      match.push({
+        header: change.header, // keep the original header
+        hunks: matchHunks,
       })
     }
 
-    // Separate hunks while keeping the original change structure if necessary
-    if (separateHunks.length > 0) {
-      separate.push({
-        header: change.header, // Keep the original header for the separated hunks
-        hunks: separateHunks, // Group all separate hunks in a single change
+    // Keep the modified change if it has any hunks left to keep
+    if (restHunks.length > 0) {
+      rest.push({
+        header: change.header, // keep the original header
+        hunks: restHunks,
       })
     }
   }
 
-  return { keep, separate }
+  return { match, rest }
 }
