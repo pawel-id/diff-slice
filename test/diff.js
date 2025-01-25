@@ -28,7 +28,7 @@ describe('diff operations', () => {
 
     // filter out only hunks that contain the word 'friendly'
     const { match } = split(changes, {
-      isMatchHunk: (hunk) => {
+      matchHunk: (hunk) => {
         return hunk.lines.some((line) => line.includes('friendly'))
       },
     })

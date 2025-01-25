@@ -75,32 +75,32 @@ export function unparse(changes) {
  * @param {Object[]} changes - An array of changes, where each change
  * includes a header and hunk(s).
  * @param {Object} options - An object containing optional processing functions:
- * @param {function} options.isMatchChange - A function to process the entire
+ * @param {function} options.matchChange - A function to process the entire
  *     change, returning a boolean. If true, the change is kept in matching
  *     list.
- * @param {function} options.isMatchHunk - A function to process individual
+ * @param {function} options.matchHunk - A function to process individual
  *     hunks, returning a boolean. If true, the hunk is moved to matching
  *     list of changes.
- * @returns {{ keep: Object[], separate: Object[] }} - An object containing
+ * @returns {{ match: Object[], rest: Object[] }} - An object containing
  * two arrays:
  * - `match`: matching changes
  * - `rest`: rest of changes
  */
 export function split(changes, options = {}) {
-  const { isMatchChange, isMatchHunk } = options
+  const { matchChange, matchHunk } = options
 
   const match = [] // matching changes
   const rest = [] // rest of changes
 
   for (const change of changes) {
     // Check if the entire change match criteria
-    if (isMatchChange && isMatchChange(change)) {
+    if (matchChange && matchChange(change)) {
       match.push(change)
       continue
     }
 
     // If there's no hunks to process move it to rest entirely
-    if (!change.hunks || !isMatchHunk) {
+    if (!change.hunks || !matchHunk) {
       rest.push(change)
       continue
     }
@@ -110,7 +110,7 @@ export function split(changes, options = {}) {
     const matchHunks = []
 
     for (const hunk of change.hunks) {
-      if (isMatchHunk(hunk)) {
+      if (matchHunk(hunk)) {
         matchHunks.push(hunk)
       } else {
         restHunks.push(hunk)

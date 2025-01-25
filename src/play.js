@@ -6,7 +6,7 @@ const changes = parse(content)
 console.log(JSON.stringify(changes, null, 2))
 
 const pricebookEntries = {
-  isMatchHunk: function (hunk) {
+  matchHunk: function (hunk) {
     return hunk.lines.some((line) => line.includes('PricebookEntry'))
   },
 }
