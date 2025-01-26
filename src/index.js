@@ -21,7 +21,8 @@ function splitChanges(content) {
  * @returns
  */
 function parseChange(changeStr) {
-  const lines = changeStr.split('\n')
+  let lines = changeStr.split('\n')
+  if (lines.at(-1) === '') lines.pop()
 
   let header = []
   let hunks
@@ -65,7 +66,7 @@ function unparseChange(change) {
 }
 
 export function unparse(changes) {
-  return changes.map((change) => unparseChange(change)).join('')
+  return changes.map((change) => unparseChange(change)).join('\n')+'\n'
 }
 
 /**
